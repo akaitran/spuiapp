@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import {
   StyleSheet,
   Image,
+  PermissionsAndroid,
   TouchableWithoutFeedback
 } from "react-native";
 
@@ -23,10 +24,25 @@ class Card extends React.Component {
     const cardContainer = [styles.card, styles.shadow, style];
     const colorStyle = item.color && argonTheme.COLORS[item.color.toUpperCase()];
 
+    const requestPermission = async () => {
+      try {
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS[item.permission]
+        );
+        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+          alert(`${item.permission} permission approved!`);
+        } else {
+          alert(`${item.permission} permission denied!`);
+        }
+      } catch (err) {
+        console.warn(err);
+      }
+    };
+
     return (
       <Block card flex style={cardContainer}>
         <TouchableWithoutFeedback
-          onPress={() => navigation.navigate(item.screen, { log: item })}
+          onPress={requestPermission}
         >
           <Entypo style={{textAlign: 'center'}} name={item.icon} size={64} color={colorStyle} />
         </TouchableWithoutFeedback>

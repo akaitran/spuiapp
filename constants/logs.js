@@ -5,7 +5,8 @@ export default [
     color: 'primary',
     screen: 'LogHistory',
     function: 'GPSDetection',
-    cta: 'View log', 
+    permission: 'GPS',
+    cta: 'View log',
   },
   {
     title: 'Accelerometer sensor',
@@ -13,6 +14,7 @@ export default [
     color: 'label',
     screen: 'LogHistory',
     function: 'AccelerometerSensor',
+    permission: 'GPS',
     cta: 'View log'
   },
   {
@@ -20,7 +22,8 @@ export default [
     icon: 'message',
     color: 'warning',
     screen: 'LogHistory',
-    function: 'SMSHistory',
+    function: 'SMSList',
+    permission: 'READ_SMS',
     cta: 'View log' 
   },
   {
@@ -28,7 +31,8 @@ export default [
     icon: 'phone',
     color: 'info',
     screen: 'LogHistory',
-    function: 'CallHistory',
+    function: 'CallLog',
+    permission: 'READ_CALL_LOG',
     cta: 'View log' 
   },
   {
@@ -37,6 +41,7 @@ export default [
     color: 'error',
     screen: 'LogHistory',
     function: 'AppUsage',
+    permission: 'APP_USAGE',
     cta: 'View log', 
   },
   {
@@ -45,6 +50,7 @@ export default [
     color: 'facebook',
     screen: 'LogHistory',
     function: 'WebHistory',
+    permission: 'WEB_HISTORY',
     cta: 'View log', 
   },
   {
@@ -52,6 +58,7 @@ export default [
     icon: 'battery',
     color: 'success',
     screen: 'BatteryStatus',
+    permission: 'BATTERY',
     cta: 'View log', 
   },
   {
@@ -59,6 +66,7 @@ export default [
     icon: 'keyboard',
     color: 'twitter',
     screen: 'KeyboardTracking',
+    permission: 'KEYBOARD',
     cta: 'View log', 
   },
 ];

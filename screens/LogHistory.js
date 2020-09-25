@@ -13,7 +13,8 @@ import { Icon } from "../components";
 import argonTheme from "../constants/Theme";
 import Images from "../constants/Images";
 import AccelerometerSensor from "../components/AccelerometerSensor";
-//import SMSHistory from "../components/SMSHistory";
+import SMSList from "../components/SMSList";
+import CallLog from "../components/CallLog";
 import { iPhoneX, HeaderHeight } from "../constants/utils";
 
 import * as Location from 'expo-location';
@@ -21,43 +22,18 @@ import * as Location from 'expo-location';
 const { height, width } = Dimensions.get("window");
 
 class LogHistory extends React.Component {
-
   state = {
     selectedSize: null
   };
 
   scrollX = new Animated.Value(0);
 
-  componentDidMount =  async() => {
-    try {
-      const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.CALL_PHONE,
-        {
-          title: 'Call Log Example',
-          message:
-            'Access your call logs',
-          buttonNeutral: 'Ask Me Later',
-          buttonNegative: 'Cancel',
-          buttonPositive: 'OK',
-        }
-      )
-      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        
-      } else {
-        console.log('Call Log permission denied');
-      }
-    }
-    catch (e) {
-      console.log(e);
-    }
-  }
-
   switchScreen = (param) => {
     switch (param){
       case "AccelerometerSensor": return <AccelerometerSensor />
       case "GPSDetection": return <GPSDetection />
-      case "SMSHistory": return <SMSHistory />
-      case "CallHistory": return <CallHistory />
+      case "SMSList": return <SMSList />
+      case "CallLog": return <CallLog />
       case "AppUsage": return <AppUsage />
       case "WebHistory": return <WebHistory />
       case "BatteryStatus": return <BatteryStatus />
@@ -82,11 +58,11 @@ class LogHistory extends React.Component {
                 paddingTop: theme.SIZES.BASE
               }}
             >
-              <Text size={28} style={{ paddingBottom: 24, fontFamily: 'open-sans-regular' }} color={argonTheme.COLORS.TEXT}>
+              <Text size={28} style={{ fontFamily: 'open-sans-regular' }} color={argonTheme.COLORS.TEXT}>
                 {log.title}
               </Text>
             </Block>
-            <Block style={{ padding: theme.SIZES.BASE }}>
+            <Block style={{ padding: theme.SIZES.BASE/2 }}>
               {this.switchScreen(log.function)}
             </Block>
           </ScrollView>
